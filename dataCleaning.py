@@ -1,11 +1,12 @@
 import pandas as pd
 import json
 
-with open('wonthaggiForecast.json', 'r') as f:
+with open('melbourneObservations.json', 'r') as f:
     json_data = json.load(f)
 
-forecastData = json_data["product"]['forecast']['area']
+forecastData = json_data["product"]['observations']['station']
 
-df_forecast = pd.DataFrame(forecastData)
+df_forecast = pd.json_normalize(forecastData, sep= '_')
  
-print(df_forecast)
+#print(df_forecast[['@stn-name','@stn-height']])
+df_forecast.style
